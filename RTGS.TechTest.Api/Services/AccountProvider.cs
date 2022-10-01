@@ -20,6 +20,11 @@ public class AccountProvider : IAccountProvider
 
     public void Deposit(string accountIdentifier, float amount)
     {
+        if (amount < 0)
+        {
+            throw new ValidationException("Deposit amount must be positive");
+        }
+
         var account = _accounts.SingleOrDefault(a => a.Identifier == accountIdentifier);
         if (account == null)
         {

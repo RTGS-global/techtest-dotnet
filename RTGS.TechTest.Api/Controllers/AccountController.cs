@@ -24,6 +24,10 @@ public class AccountController : ControllerBase
             _accountProvider.Deposit(accountIdentifier, amount);
             return Ok();
         }
+		catch (ValidationException ex)
+		{
+			return UnprocessableEntity(ex.Message);
+		}
 		catch (AccountNotFoundException)
 		{
 			return NotFound();
