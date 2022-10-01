@@ -27,7 +27,7 @@ public class BankAccountTests : IClassFixture<WebApplicationFactory<Program>>
 	[Fact]
 	public async Task GivenAccountExistsWithNoTransactions_ThenGetBalanceShouldReturnZero()
 	{
-		var result = await _client.GetFromJsonAsync<MyBalance>("/account/account-a");
+		var result = await _client.GetFromJsonAsync<Account>("/account/account-a");
 
 		Assert.Equal(0, result.Balance);
 	}
@@ -36,7 +36,7 @@ public class BankAccountTests : IClassFixture<WebApplicationFactory<Program>>
 	public async Task GivenAccountExists_WhenTransactionIsAdded_ThenGetBalanceShouldReturnExpected()
 	{
 		await _client.PostAsJsonAsync("/account/account-a", "1000");
-		var result = await _client.GetFromJsonAsync<MyBalance>("/account/account-a");
+		var result = await _client.GetFromJsonAsync<Account>("/account/account-a");
 
 		Assert.Equal(1000, result.Balance);
 	}
@@ -46,7 +46,7 @@ public class BankAccountTests : IClassFixture<WebApplicationFactory<Program>>
 	{
 		await _client.PostAsJsonAsync("/account/account-a", "1000");
 		await _client.PostAsJsonAsync("/account/account-a", "2000");
-		var result = await _client.GetFromJsonAsync<MyBalance>("/account/account-a");
+		var result = await _client.GetFromJsonAsync<Account>("/account/account-a");
 
 		Assert.Equal(3000, result.Balance);
 	}
@@ -55,8 +55,8 @@ public class BankAccountTests : IClassFixture<WebApplicationFactory<Program>>
 	public async Task GivenAccountExists_WhenTransferIsMade_ThenGetBalanceShouldReturnExpected()
 	{
 		await _client.PostAsJsonAsync("/account/transfer", new MyTransferDto("account-a", "account-b", 1000));
-		var accountA = await _client.GetFromJsonAsync<MyBalance>("/account/account-a");
-		var accountB = await _client.GetFromJsonAsync<MyBalance>("/account/account-b");
+		var accountA = await _client.GetFromJsonAsync<Account>("/account/account-a");
+		var accountB = await _client.GetFromJsonAsync<Account>("/account/account-b");
 
 		Assert.Equal(-1000, accountA.Balance);
 		Assert.Equal(1000, accountB.Balance);

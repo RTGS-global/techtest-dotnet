@@ -4,14 +4,14 @@ namespace RTGS.TechTest.Api.Services;
 
 public class AccountProvider : IAccountProvider
 {
-    private readonly IDictionary<string, MyBalance> _accounts;
+    private readonly IDictionary<string, Account> _accounts;
 
     public AccountProvider()
     {
-        _accounts = new Dictionary<string, MyBalance> { { "account-a", new MyBalance() }, { "account-b", new MyBalance() } };
+        _accounts = new Dictionary<string, Account> { { "account-a", new Account() }, { "account-b", new Account() } };
     }
 
-    public MyBalance GetBalance(string accountIdentifier) => _accounts[accountIdentifier];
+    public Account Get(string accountIdentifier) => _accounts[accountIdentifier];
 
     public void Deposit(string accountIdentifier, float amount) => AddTransaction(accountIdentifier, amount);
 
@@ -23,8 +23,7 @@ public class AccountProvider : IAccountProvider
 
     private void AddTransaction(string accountIdentifier, float amount)
     {
-        MyBalance accountBalance = _accounts[accountIdentifier];
-        _accounts[accountIdentifier] =
-            accountBalance with { Balance = accountBalance.Balance + amount };
+        var account = _accounts[accountIdentifier];
+        account.Balance += amount;
     }
 }

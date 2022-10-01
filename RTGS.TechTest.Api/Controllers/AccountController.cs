@@ -30,5 +30,5 @@ public class AccountController : ControllerBase
 	}
 
 	[HttpGet("{accountIdentifier}", Name = "GetBalance")]
-	public MyBalance Get(string accountIdentifier) => _accountProvider.GetBalance(accountIdentifier);
+	public Account Get(string accountIdentifier) => _accountProvider.Get(accountIdentifier);
 }
