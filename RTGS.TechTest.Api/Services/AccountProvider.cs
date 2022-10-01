@@ -11,7 +11,11 @@ public class AccountProvider : IAccountProvider
         _accounts = new List<Account> { new Account("account-a"), new Account("account-b") };
     }
 
-    public Account Get(string accountIdentifier) => _accounts.SingleOrDefault(a=>a.Identifier == accountIdentifier);
+    public Account Get(string accountIdentifier)
+    {
+        var account = _accounts.SingleOrDefault(a => a.Identifier == accountIdentifier);
+        return account;
+    }
 
     public void Deposit(string accountIdentifier, float amount) => AddTransaction(accountIdentifier, amount);
 

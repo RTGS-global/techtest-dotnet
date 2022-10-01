@@ -30,5 +30,9 @@ public class AccountController : ControllerBase
 	}
 
 	[HttpGet("{accountIdentifier}", Name = "GetBalance")]
-	public Account Get(string accountIdentifier) => _accountProvider.Get(accountIdentifier);
+	public IActionResult Get(string accountIdentifier)
+	{
+		var account = _accountProvider.Get(accountIdentifier);
+		return account != null ? Ok(account) : NotFound();
+	}
 }
