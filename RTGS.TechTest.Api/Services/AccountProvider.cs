@@ -1,4 +1,5 @@
-﻿using RTGS.TechTest.Api.Models;
+﻿using RTGS.TechTest.Api.Exceptions;
+using RTGS.TechTest.Api.Models;
 
 namespace RTGS.TechTest.Api.Services;
 
@@ -17,7 +18,15 @@ public class AccountProvider : IAccountProvider
         return account;
     }
 
-    public void Deposit(string accountIdentifier, float amount) => AddTransaction(accountIdentifier, amount);
+    public void Deposit(string accountIdentifier, float amount)
+    {
+        var account = _accounts.SingleOrDefault(a => a.Identifier == accountIdentifier);
+        if (account == null)
+        {
+            throw new AccountNotFoundException();
+        }
+        account.Balance += amount;
+    }
 
     public void Transfer(MyTransferDto transfer)
     {

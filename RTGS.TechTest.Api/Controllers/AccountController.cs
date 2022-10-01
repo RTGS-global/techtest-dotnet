@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using RTGS.TechTest.Api.Exceptions;
 using RTGS.TechTest.Api.Models;
 using RTGS.TechTest.Api.Services;
 
@@ -18,8 +19,15 @@ public class AccountController : ControllerBase
 	[HttpPost("{accountIdentifier}", Name = "Deposit")]
 	public IActionResult Deposit(string accountIdentifier, [FromBody]float amount)
 	{
-		_accountProvider.Deposit(accountIdentifier, amount);
-		return Ok();
+		try
+		{
+            _accountProvider.Deposit(accountIdentifier, amount);
+            return Ok();
+        }
+		catch (AccountNotFoundException)
+		{
+			return NotFound();
+		}		
 	}
 
 	[HttpPost("transfer", Name = "Transfer")]
