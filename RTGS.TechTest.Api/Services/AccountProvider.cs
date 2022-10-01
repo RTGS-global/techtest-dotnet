@@ -35,6 +35,11 @@ public class AccountProvider : IAccountProvider
 
     public void Transfer(MyTransferDto transfer)
     {
+        if (transfer.DebtorAccountIdentifier == transfer.CreditorAccountIdentifier)
+        {
+            throw new ValidationException("Debtor and creditor accounts must be different");
+        }
+
         var debtorAccount = _accounts.SingleOrDefault(a => a.Identifier == transfer.DebtorAccountIdentifier);
         var creditorAccount = _accounts.SingleOrDefault(a => a.Identifier == transfer.CreditorAccountIdentifier);
 

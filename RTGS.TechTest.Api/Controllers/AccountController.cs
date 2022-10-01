@@ -42,6 +42,10 @@ public class AccountController : ControllerBase
             _accountProvider.Transfer(transfer);
             return Accepted();
         }
+        catch (ValidationException ex)
+        {
+            return UnprocessableEntity(ex.Message);
+        }
         catch (AccountNotFoundException)
         {
             return NotFound();
