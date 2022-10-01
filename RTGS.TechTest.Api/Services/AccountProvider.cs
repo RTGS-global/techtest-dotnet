@@ -30,13 +30,16 @@ public class AccountProvider : IAccountProvider
 
     public void Transfer(MyTransferDto transfer)
     {
-        AddTransaction(transfer.DebtorAccountIdentifier, -transfer.Amount);
-        AddTransaction(transfer.CreditorAccountIdentifier, transfer.Amount);
+        var debtorAccount = _accounts.SingleOrDefault(a => a.Identifier == transfer.DebtorAccountIdentifier);
+        var creditorAccount = _accounts.SingleOrDefault(a => a.Identifier == transfer.CreditorAccountIdentifier);
+
+        if (debtorAccount == null || creditorAccount == null)
+        {
+            throw new AccountNotFoundException();
+        }
+
+        debtorAccount.Balance -= transfer.Amount;
+        creditorAccount.Balance += transfer.Amount;
     }
 
-    private void AddTransaction(string accountIdentifier, float amount)
-    {
-        var account = _accounts.SingleOrDefault(a => a.Identifier == accountIdentifier);
-        account.Balance += amount;
-    }
 }

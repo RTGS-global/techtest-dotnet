@@ -14,5 +14,10 @@ public interface IAccountProvider
     /// <exception cref="RTGS.TechTest.Api.Exceptions.AccountNotFoundException">thrown when account with <paramref name="accountIdentifier"/>not found</exception>
     void Deposit(string accountIdentifier, float amount);
 
+    /// <summary>
+    /// Move money between accounts
+    /// </summary>
+    /// <param name="transfer"></param>
+    /// <exception cref="RTGS.TechTest.Api.Exceptions.AccountNotFoundException">thrown when debtor or creditor not found</exception>
     void Transfer(MyTransferDto transfer);
 }

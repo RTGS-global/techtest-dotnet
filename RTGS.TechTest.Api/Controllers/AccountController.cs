@@ -33,8 +33,15 @@ public class AccountController : ControllerBase
 	[HttpPost("transfer", Name = "Transfer")]
 	public IActionResult Transfer(MyTransferDto transfer)
 	{
-		_accountProvider.Transfer(transfer);
-		return Accepted();
+        try
+        {
+            _accountProvider.Transfer(transfer);
+            return Accepted();
+        }
+        catch (AccountNotFoundException)
+        {
+            return NotFound();
+        }
 	}
 
 	[HttpGet("{accountIdentifier}", Name = "GetBalance")]
