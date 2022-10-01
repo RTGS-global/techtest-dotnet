@@ -95,4 +95,12 @@ public class BankAccountTests : IClassFixture<WebApplicationFactory<Program>>
 
         Assert.Equal(HttpStatusCode.NotFound, result.StatusCode);
     }
+
+    [Fact]
+    public async Task GivenAccountExists_WhenNegativeDepositIsMade_ThenReturn422()
+    {
+        var result = await _client.PostAsJsonAsync("/account/account-a", "-1000");
+
+        Assert.Equal(HttpStatusCode.UnprocessableEntity, result.StatusCode);
+    }
 }
