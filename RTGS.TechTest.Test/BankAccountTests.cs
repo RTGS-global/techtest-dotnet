@@ -3,8 +3,9 @@ using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
-using RTGS.TechTest.Api;
 using RTGS.TechTest.Api.Controllers;
+using RTGS.TechTest.Api.Models;
+using RTGS.TechTest.Api.Services;
 using Xunit;
 
 namespace RTGS.TechTest.Test;

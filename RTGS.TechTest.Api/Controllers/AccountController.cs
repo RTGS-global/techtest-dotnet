@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using RTGS.TechTest.Api.Models;
+using RTGS.TechTest.Api.Services;
 
 namespace RTGS.TechTest.Api.Controllers;
 
@@ -29,18 +31,4 @@ public class AccountController : ControllerBase
 
 	[HttpGet("{accountIdentifier}", Name = "GetBalance")]
 	public MyBalance Get(string accountIdentifier) => _accountProvider.GetBalance(accountIdentifier);
-}
-
-public class MyTransferDto
-{
-	public MyTransferDto(string debtorAccountIdentifier, string creditorAccountIdentifier, float amount)
-	{
-		DebtorAccountIdentifier = debtorAccountIdentifier;
-		CreditorAccountIdentifier = creditorAccountIdentifier;
-		Amount = amount;
-	}
-
-	public string DebtorAccountIdentifier { get; set; }
-	public string CreditorAccountIdentifier { get; set; }
-	public float Amount { get; set; }
 }
