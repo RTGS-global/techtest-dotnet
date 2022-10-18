@@ -7,6 +7,7 @@ public interface IAccountProvider
 	MyBalance GetBalance(string accountIdentifier);
 	void Deposit(string accountIdentifier, float amount);
 	void Transfer(MyTransferDto transfer);
+	void Withdraw(string accountIdentifier, float amount);
 }
 
 public class AccountProvider : IAccountProvider
@@ -27,6 +28,8 @@ public class AccountProvider : IAccountProvider
 		AddTransaction(transfer.DebtorAccountIdentifier, -transfer.Amount);
 		AddTransaction(transfer.CreditorAccountIdentifier, transfer.Amount);
 	}
+
+	public void Withdraw(string accountIdentifier, float amount) => AddTransaction(accountIdentifier, -1 * amount);
 
 	private void AddTransaction(string accountIdentifier, float amount)
 	{

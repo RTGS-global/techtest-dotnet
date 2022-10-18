@@ -20,6 +20,13 @@ public class AccountController : ControllerBase
 		return Ok();
 	}
 
+	[HttpPost("{accountIdentifier}/withdraw", Name = "Withdrawal")]
+	public IActionResult Withdraw(string accountIdentifier, [FromBody] float amount)
+	{
+		_accountProvider.Withdraw(accountIdentifier, amount);
+		return Ok();
+	}
+
 	[HttpPost("transfer", Name = "Transfer")]
 	public IActionResult Transfer(MyTransferDto transfer)
 	{
