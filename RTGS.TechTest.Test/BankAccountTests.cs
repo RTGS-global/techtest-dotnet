@@ -32,12 +32,23 @@ public class BankAccountTests : IClassFixture<WebApplicationFactory<Program>>
 	}
 
 	[Fact]
-	public async Task GivenAccountExists_WhenTransactionIsAdded_ThenGetBalanceShouldReturnExpected()
+	public async Task GivenAccountExists_WhenDepositIsAdded_ThenGetBalanceShouldReturnExpected()
 	{
 		await _client.PostAsJsonAsync("/account/account-a", "1000");
 		var result = await _client.GetFromJsonAsync<MyBalance>("/account/account-a");
 
 		Assert.Equal(1000, result.Balance);
+	}
+
+	[Fact]
+	public async Task GivenAccountExistsAndDepositIsAdded_WhenWithdrawalIsAdded_ThenGetBalanceShouldReturnExpected()
+	{
+		await _client.PostAsJsonAsync("/account/account-a", "1000");
+
+		await _client.PostAsJsonAsync("/account/account-a/withdraw", "100");
+		var result = await _client.GetFromJsonAsync<MyBalance>("/account/account-a");
+
+		Assert.Equal(900, result.Balance);
 	}
 
 	[Fact]
@@ -61,5 +72,3 @@ public class BankAccountTests : IClassFixture<WebApplicationFactory<Program>>
 		Assert.Equal(1000, accountB.Balance);
 	}
 }
-
-
