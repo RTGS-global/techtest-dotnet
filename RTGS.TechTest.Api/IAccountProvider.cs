@@ -15,7 +15,7 @@ public class AccountProvider : IAccountProvider
 
 	public AccountProvider()
 	{
-		_accounts = new Dictionary<string, MyBalance> {{"account-a", new MyBalance()}, {"account-b", new MyBalance()}};
+		_accounts = new Dictionary<string, MyBalance> { { "account-a", new MyBalance() }, { "account-b", new MyBalance() } };
 	}
 
 	public MyBalance GetBalance(string accountIdentifier) => _accounts[accountIdentifier];
@@ -32,7 +32,7 @@ public class AccountProvider : IAccountProvider
 	{
 		MyBalance accountBalance = _accounts[accountIdentifier];
 		_accounts[accountIdentifier] =
-			accountBalance with {Balance = accountBalance.Balance + amount};
+			accountBalance with { Balance = accountBalance.Balance + amount };
 	}
 }
 
