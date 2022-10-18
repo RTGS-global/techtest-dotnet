@@ -14,7 +14,7 @@ public class AccountController : ControllerBase
 	}
 
 	[HttpPost("{accountIdentifier}", Name = "Deposit")]
-	public IActionResult Deposit(string accountIdentifier, [FromBody]float amount)
+	public IActionResult Deposit(string accountIdentifier, [FromBody] float amount)
 	{
 		_accountProvider.Deposit(accountIdentifier, amount);
 		return Ok();
