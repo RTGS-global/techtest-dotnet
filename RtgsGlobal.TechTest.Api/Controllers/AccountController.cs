@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace RTGS.TechTest.Api.Controllers;
+namespace RtgsGlobal.TechTest.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
