@@ -1,6 +1,6 @@
-using RTGS.TechTest.Api.Controllers;
+using RtgsGlobal.TechTest.Api.Controllers;
 
-namespace RTGS.TechTest.Api;
+namespace RtgsGlobal.TechTest.Api;
 
 public interface IAccountProvider
 {

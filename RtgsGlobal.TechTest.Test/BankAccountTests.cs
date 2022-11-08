@@ -3,11 +3,11 @@ using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
-using RTGS.TechTest.Api;
-using RTGS.TechTest.Api.Controllers;
+using RtgsGlobal.TechTest.Api;
+using RtgsGlobal.TechTest.Api.Controllers;
 using Xunit;
 
-namespace RTGS.TechTest.Test;
+namespace RtgsGlobal.TechTest.Test;
 
 public class BankAccountTests : IClassFixture<WebApplicationFactory<Program>>
 {
