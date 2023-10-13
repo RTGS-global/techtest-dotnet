@@ -11,14 +11,17 @@ Download [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) and an
 
 ## Step 1
 
-In this first step please spend no more than __30 minutes__ addressing the issues below. This step is for you to become familiar with the code base before bringing it to our pairing session in [Step 3](#step-3---pairing).
+In this first step please spend no more than __30 minutes__ addressing the issues below. 
+
+This step is for you to become familiar with the code base before bringing it to our pairing session in [Step 3](#step-3---pairing).
 
 Please review the code base and add separate commits for each point below.
 
- - Can you identify any code smells?
- - Return appropriate error when trying to use an account that doesn't exist.
- - You should not be able to deposit a negative amount.
- - You should not be able to transfer money to the same account.
+- [Review] Can you identify any code smells or bugs? (**do not fix these**, just add inline comments or a standalone notes file)
+
+- [Code change] Alter the API to return an appropriate error when an account doesn't exist.
+- [Code change] Alter the API to prevent deposits with a negative amount.
+- [Code change] Alter the API to prevent transfers to the same account.
 
 ## Step 2 - Submit
 
