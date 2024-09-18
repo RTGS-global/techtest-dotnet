@@ -7,7 +7,7 @@ Thank you for taking the time to do the [RTGS.global](https://rtgs.global) dotne
 3. If `1000` is transferred from `account A` to `account B` then `account A`'s balance should be `-1000` and `account B`'s balance should be `1000`
 
 ## Prerequisite
-Download [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) and an IDE that can run the project.
+Download [.NET 8](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) and an IDE that can run the project.
 
 ## Step 1
 
